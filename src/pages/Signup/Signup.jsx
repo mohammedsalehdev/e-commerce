@@ -5,14 +5,12 @@ import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
 import * as yup from "yup";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { checkPasswordStrength } from "../../utils/password-utlis";
-import { API_CONFIG } from "../../config";
 import { sendDataToSignUp } from "../../services/auth-services";
-export default function Signup() {
 
+export default function Signup() {
     const navigate = useNavigate()
     const [accountError, setAccountError] = useState(null)
 

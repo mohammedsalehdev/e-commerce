@@ -26,112 +26,117 @@ import Deals from "./pages/Deals/Deals";
 import CategoriesLayout from "./pages/CategoriesLayout/CategoriesLayout";
 import CategoriesProducts from "./components/CategoriesProducts/CategoriesProducts";
 import { WishlistProvider } from "./pages/WishList/WishList";
+import { API_CONFIG } from "./config";
+
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        {
-          index: true,
-          element: <Home />,
-        },
-        {
-          path: "Login",
-          element: <Login />,
-        },
-        {
-          path: "signup",
-          element: <Signup />,
-        },
-        {
-          path: "forget-password",
-          element: <ForgetPassword />,
-        },
-        {
-          path: "verify-email",
-          element: <VerifyEmail />,
-        },
-        {
-          path: "product/:id",
-          element: <ProductDetails />,
-        },
-        {
-          path: "checkout",
-          element: (
-            <ProtectedRoute>
-              <Checkout />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "search-producs",
-          element: <SearchProducs />,
-        },
-        {
-          path: "cart",
-          element: (
-            <ProtectedRoute>
-              <Cart />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "favourites",
-          element: (
-            <ProtectedRoute>
-              <Favourites />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "wishlist",
-          element: <WishList />,
-        },
-        {
-          path: "categories",
-          element: <CategoriesLayout />,
-          children: [{ path: "category/:id", element: <CategoriesProducts /> }],
-        },
-        {
-          path: "brands",
-          element: <Brands />,
-        },
-        {
-          path: "account",
-          element: (
-            <ProtectedRoute>
-              <AccountLayout />
-            </ProtectedRoute>
-          ),
-          children: [
-            {
-              path: "orders",
-              element: <Orders />,
-            },
-            {
-              path: "wishlist",
-              element: <WishList />,
-            },
-          ],
-        },
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <Layout />,
+        children: [
+          {
+            index: true,
+            element: <Home />,
+          },
+          {
+            path: "Login",
+            element: <Login />,
+          },
+          {
+            path: "signup",
+            element: <Signup />,
+          },
+          {
+            path: "forget-password",
+            element: <ForgetPassword />,
+          },
+          {
+            path: "verify-email",
+            element: <VerifyEmail />,
+          },
+          {
+            path: "product/:id",
+            element: <ProductDetails />,
+          },
+          {
+            path: "checkout",
+            element: (
+              <ProtectedRoute>
+                <Checkout />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "search-producs",
+            element: <SearchProducs />,
+          },
+          {
+            path: "cart",
+            element: (
+              <ProtectedRoute>
+                <Cart />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "favourites",
+            element: (
+              <ProtectedRoute>
+                <Favourites />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "wishlist",
+            element: <WishList />,
+          },
+          {
+            path: "categories",
+            element: <CategoriesLayout />,
+            children: [{ path: "category/:id", element: <CategoriesProducts /> }],
+          },
+          {
+            path: "brands",
+            element: <Brands />,
+          },
+          {
+            path: "account",
+            element: (
+              <ProtectedRoute>
+                <AccountLayout />
+              </ProtectedRoute>
+            ),
+            children: [
+              {
+                path: "orders",
+                element: <Orders />,
+              },
+              {
+                path: "wishlist",
+                element: <WishList />,
+              },
+            ],
+          },
 
-        {
-          path: "allorders",
-          element: <Navigate to="/account/orders" />,
-        },
-        {
-          path: "deals",
-          element: <Deals />,
-        },
+          {
+            path: "allorders",
+            element: <Navigate to="/account/orders" />,
+          },
+          {
+            path: "deals",
+            element: <Deals />,
+          },
 
-        {
-          path: "*",
-          element: <NotFound />,
-        },
-      ],
-    },
-  ]);
+          {
+            path: "*",
+            element: <NotFound />,
+          },
+        ],
+      },
+    ],
+    { basename: API_CONFIG.baseName },
+  );
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
